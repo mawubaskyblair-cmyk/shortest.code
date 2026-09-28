@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Resource Management</h1>
+<h2>The using Keyword</h2>
+
+<p id="demo"></p>
+
+<script>
+class MyResource {
+  constructor(name) {
+    this.name = name;
+    myDisplay(`Resource ${this.name} acquired.`);
+  }
+
+  [Symbol.dispose]() {
+    myDisplay(`Resource ${this.name} disposed.`);
+  }
+}
+
+function manageResource() {
+  using resource = new MyResource("Database Connection");
+  // Use the resource here
+  myDisplay(`Using resource: ${resource.name}`);
+}
+
+function myDisplay(text) {
+  document.getElementById("demo").innerHTML += text + "<br>";
+}
+
+manageResource();
+</script>
+
+</body>
+</html>
